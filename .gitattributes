@@ -1,0 +1,21 @@
+### Default ###
+*                   text=auto
+
+### Scripts ###
+/mvnw               text eol=lf
+*.cmd               text eol=crlf
+*.css               text diff=css
+*.html              text diff=html
+*.java              text diff=java
+*.sql               text
+
+### Documents ###
+.gitattributes      text
+.gitignore          text
+*.md                text diff=markdown
+*.properties        text
+*.xml               text
+*.yaml              text
+
+### Graphics ###
+*.png               binary

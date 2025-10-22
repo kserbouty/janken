@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result | Jan-Ken-Pon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h2>Result</h2>
+
+    <div class="container">
+        <div class="content item-scr">
+            <p>PLAYER >> <span th:text="${playerChoice}"></span></p>
+        </div>
+        <div class="content item-scr">
+            <p>CPU >> <span th:text="${cpuChoice}"></span></p>
+        </div>
+        <div class="content item-scr">
+            <p>Result >> <span th:text="${playerResult}"></span></p>
+        </div>
+    </div>
+
+    <div class="container replay">
+        <div class="content">
+            <div class="item-btn">
+                <a class="item-lnk" href="/">Replay</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

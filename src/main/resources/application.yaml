@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: janken
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jankenpon
+    username: admin
+    password: secret
+  sql:
+    init:
+      mode: always

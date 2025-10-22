@@ -1,0 +1,39 @@
+body {
+    text-align: center;
+    margin-bottom: 20%;
+}
+
+h1, h2 {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.content {
+    width: 370px;
+}
+
+.item-lgd {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.item-img {
+    width: 100%;
+}
+
+.item-btn {
+    width: 100%;
+    margin: 15% 0;
+}
+
+.item-lnk {
+    padding: 5% 15%;
+}

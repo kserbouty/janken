@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Start | Jan-Ken-Pon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h1>Jan-Ken-Pon</h1>
+
+    <h2>PLAYER vs CPU</h2>
+
+    <div class="container">
+        <div class="content">
+            <p class="item-lgd">Rock</p>
+            <div class="item-img">
+                <img src="images/rock-logo.png" width="248" height="290" alt="rock-logo">
+            </div>
+            <div class="item-btn">
+                <a class="item-lnk" href="/result?choice=rock">Play Rock</a>
+            </div>
+        </div>
+        <div class="content">
+            <p class="item-lgd">Paper</p>
+            <div class="item-img">
+                <img src="images/paper-logo.png" width="281" height="290" alt="paper-logo">
+            </div>
+            <div class="item-btn">
+                <a class="item-lnk" href="/result?choice=paper">Play Paper</a>
+            </div>
+        </div>
+        <div class="content">
+            <p class="item-lgd">Scissors</p>
+            <div class="item-img">
+                <img src="images/scissors-logo.png" width="205" height="290" alt="scissors-logo">
+            </div>
+            <div class="item-btn">
+                <a class="item-lnk" href="/result?choice=scissors">Play Scissors</a>
+            </div>
+        </div>
+    </div>
+
+    <h2>Score</h2>
+
+    <div class="container">
+        <div class="content item-scr">
+            <p>Wins <span th:text="${playerWins}"></span></p>
+        </div>
+        <div class="content item-scr">
+            <p>Draws <span th:text="${playerDraws}"></span></p>
+        </div>
+        <div class="content item-scr">
+            <p>Losses <span th:text="${playerLosses}"></span></p>
+        </div>
+    </div>
+
+</body>
+</html>

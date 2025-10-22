@@ -1,0 +1,35 @@
+package com.janken.api.controllers;
+
+import com.janken.api.models.Game;
+import com.janken.api.services.GameService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.time.LocalDateTime;
+
+@Controller
+public class StartController {
+
+    @Autowired
+    private GameService gameService;
+
+    @GetMapping("/")
+    public String start(Model model) throws Exception {
+
+        try {
+            Game game = gameService.score();
+
+            model.addAttribute("playerWins", game.getWins());
+            model.addAttribute("playerDraws", game.getDraws());
+            model.addAttribute("playerLosses", game.getLosses());
+
+            return "start";
+
+        } catch (Exception e) {
+            System.err.println(LocalDateTime.now() + " " + e.getMessage());
+            throw e;
+        }
+    }
+}
