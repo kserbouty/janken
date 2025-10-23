@@ -27,12 +27,12 @@ public class GameController {
     }
 
     @GetMapping("/result")
-    public String play(
+    public String playGame(
             @RequestParam(name="choice") String playerChoice,
             Model model) throws Exception
     {
         try {
-            Game game = gameRepository.score();
+            Game game = gameRepository.game();
             int cpuTarget = new Random().nextInt(3);
             String[] cpuChoices = {"Rock", "Paper", "Scissors"};
 
@@ -41,7 +41,7 @@ public class GameController {
 
             boolean result;
 
-            result = gameService.winConditions(cpuChoice, playerChoice);
+            result = gameService.checkWin(cpuChoice, playerChoice);
 
             if (result) {
                 int currentWins = game.getWins();
@@ -49,21 +49,19 @@ public class GameController {
                 playerResult = "Win";
             }
 
-            result = gameService.lossConditions(cpuChoice, playerChoice);
+            result = gameService.checkLoss(cpuChoice, playerChoice);
 
             if (result){
                 int currentLosses = game.getLosses();
                 game.setLosses(currentLosses + 1);
-
                 playerResult = "Loss";
             }
 
-            result = gameService.drawConditions(cpuChoice, playerChoice);
+            result = gameService.checkDraw(cpuChoice, playerChoice);
 
             if (result){
                 int currentDraws = game.getDraws();
                 game.setDraws(currentDraws + 1);
-
                 playerResult = "Draw";
             }
 

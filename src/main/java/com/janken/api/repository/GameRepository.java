@@ -19,7 +19,7 @@ public class GameRepository {
         this.dataSource = dataSource;
     }
 
-    public Game score() throws SQLException {
+    public Game game() throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -42,8 +42,8 @@ public class GameRepository {
                         resultSet.getInt("draws"),
                         resultSet.getInt("losses"));
             } else {
-                this.newGame();
-                Game initialGame = this.score();
+                this.start();
+                Game initialGame = this.game();
 
                 return new Game(
                         initialGame.getId(),
@@ -86,7 +86,7 @@ public class GameRepository {
         }
     }
 
-    private void newGame() throws SQLException {
+    private void start() throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameService {
 
-    public boolean winConditions(String cpuChoice, String playerChoice) {
+    public boolean checkWin(String cpuChoice, String playerChoice) {
 
         if (cpuChoice.equalsIgnoreCase("rock")
                 && playerChoice.equalsIgnoreCase("paper")) {
@@ -21,7 +21,7 @@ public class GameService {
                 && playerChoice.equalsIgnoreCase("rock");
     }
 
-    public boolean lossConditions(String cpuChoice, String playerChoice) {
+    public boolean checkLoss(String cpuChoice, String playerChoice) {
 
         if (cpuChoice.equalsIgnoreCase("paper")
                 && playerChoice.equalsIgnoreCase("rock")) {
@@ -37,7 +37,7 @@ public class GameService {
                 && playerChoice.equalsIgnoreCase("scissors");
     }
 
-    public boolean drawConditions(String cpuChoice, String playerChoice) {
+    public boolean checkDraw(String cpuChoice, String playerChoice) {
 
         return cpuChoice.equalsIgnoreCase(playerChoice);
     }

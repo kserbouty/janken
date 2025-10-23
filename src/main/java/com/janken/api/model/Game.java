@@ -42,14 +42,4 @@ public class Game {
     public void setLosses(int losses) {
         this.losses = losses;
     }
-
-    @Override
-    public String toString() {
-        return "Game{" +
-                "id=" + id +
-                ", wins=" + wins +
-                ", draws=" + draws +
-                ", losses=" + losses +
-                '}';
-    }
 }

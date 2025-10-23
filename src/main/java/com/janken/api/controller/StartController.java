@@ -18,10 +18,10 @@ public class StartController {
     }
 
     @GetMapping("/")
-    public String start(Model model) throws Exception {
+    public String startGame(Model model) throws Exception {
 
         try {
-            Game game = gameRepository.score();
+            Game game = gameRepository.game();
 
             model.addAttribute("playerWins", game.getWins());
             model.addAttribute("playerDraws", game.getDraws());
