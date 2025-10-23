@@ -4,6 +4,6 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: secret
-      POSTGRES_DB: jankenpon
+      POSTGRES_DB: janken
     ports:
       - '5432:5432'

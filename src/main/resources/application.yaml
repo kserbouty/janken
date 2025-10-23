@@ -2,7 +2,7 @@ spring:
   application:
     name: janken
   datasource:
-    url: jdbc:postgresql://localhost:5432/jankenpon
+    url: jdbc:postgresql://localhost:5432/janken
     username: admin
     password: secret
   sql:
