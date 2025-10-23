@@ -3,6 +3,7 @@ package com.janken.api.controller;
 import com.janken.api.model.Game;
 import com.janken.api.repository.GameRepository;
 
+import com.janken.api.service.GameService;
 import com.janken.api.service.UtilityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +17,11 @@ import java.util.Random;
 public class GameController {
 
     private final GameRepository gameRepository;
+    private final GameService gameService;
     private final UtilityService utilityService;
 
-    public GameController(GameRepository gameRepository, UtilityService utilityService) {
+    public GameController(GameService gameService, GameRepository gameRepository, UtilityService utilityService) {
+        this.gameService = gameService;
         this.gameRepository = gameRepository;
         this.utilityService = utilityService;
     }
@@ -28,88 +31,60 @@ public class GameController {
             @RequestParam(name="choice") String playerChoice,
             Model model) throws Exception
     {
-        String[] cpuChoices = {"rock", "paper", "scissors"};
-        int cpuTarget = new Random().nextInt(3);
-        String cpuChoice = cpuChoices[cpuTarget];
-
-        String playerResult = "";
-
         try {
-
             Game game = gameRepository.score();
+            int cpuTarget = new Random().nextInt(3);
+            String[] cpuChoices = {"Rock", "Paper", "Scissors"};
 
-            if (cpuChoice.equalsIgnoreCase("rock")
-                    && playerChoice.equalsIgnoreCase("paper")) {
+            String cpuChoice = cpuChoices[cpuTarget];
+            String playerResult = null;
 
+            boolean result;
+
+            result = gameService.winConditions(cpuChoice, playerChoice);
+
+            if (result) {
                 int currentWins = game.getWins();
                 game.setWins(currentWins + 1);
-
-                playerResult = "win";
-            }
-            if (cpuChoice.equalsIgnoreCase("paper")
-                    && playerChoice.equalsIgnoreCase("scissors")) {
-
-                int currentWins = game.getWins();
-                game.setWins(currentWins + 1);
-
-                playerResult = "win";
-            }
-            if (cpuChoice.equalsIgnoreCase("scissors")
-                    && playerChoice.equalsIgnoreCase("rock")) {
-
-                int currentWins = game.getWins();
-                game.setWins(currentWins + 1);
-
-                playerResult = "win";
+                playerResult = "Win";
             }
 
-            if (cpuChoice.equalsIgnoreCase("paper")
-                    && playerChoice.equalsIgnoreCase("rock")) {
+            result = gameService.lossConditions(cpuChoice, playerChoice);
 
+            if (result){
                 int currentLosses = game.getLosses();
                 game.setLosses(currentLosses + 1);
 
-                playerResult = "loss";
-            }
-            if (cpuChoice.equalsIgnoreCase("scissors")
-                    && playerChoice.equalsIgnoreCase("paper")) {
-
-                int currentLosses = game.getLosses();
-                game.setLosses(currentLosses + 1);
-
-                playerResult = "loss";
-            }
-            if (cpuChoice.equalsIgnoreCase("rock")
-                    && playerChoice.equalsIgnoreCase("scissors")) {
-
-                int currentLosses = game.getLosses();
-                game.setLosses(currentLosses + 1);
-
-                playerResult = "loss";
+                playerResult = "Loss";
             }
 
-            if (cpuChoice.equalsIgnoreCase(playerChoice)) {
+            result = gameService.drawConditions(cpuChoice, playerChoice);
+
+            if (result){
                 int currentDraws = game.getDraws();
                 game.setDraws(currentDraws + 1);
 
-                playerResult = "draw";
+                playerResult = "Draw";
             }
 
             gameRepository.save(game);
 
             playerChoice = utilityService.format(playerChoice);
-            cpuChoice = utilityService.format(cpuChoice);
-            playerResult = utilityService.format(playerResult);
 
             model.addAttribute("playerChoice", playerChoice);
             model.addAttribute("cpuChoice", cpuChoice);
-            model.addAttribute("playerResult", playerResult);
+
+            if (playerResult == null) {
+                return "error";
+            } else {
+                model.addAttribute("playerResult", playerResult);
+            }
+
+            return "result";
 
         } catch (Exception e) {
             System.err.println(LocalDateTime.now() + " " + e.getMessage());
             throw e;
         }
-
-        return "result";
     }
 }
