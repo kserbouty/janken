@@ -1,4 +1,4 @@
-package com.janken.api.models;
+package com.janken.api.model;
 
 public class Game {
 

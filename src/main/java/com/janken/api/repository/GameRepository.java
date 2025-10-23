@@ -1,6 +1,6 @@
-package com.janken.api.repositories;
+package com.janken.api.repository;
 
-import com.janken.api.models.Game;
+import com.janken.api.model.Game;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;

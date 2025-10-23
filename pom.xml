@@ -10,7 +10,7 @@
 
 	<groupId>com.janken</groupId>
 	<artifactId>janken</artifactId>
-	<version>0.1.2-SNAPSHOT</version>
+	<version>0.1.3-SNAPSHOT</version>
 	<name>janken</name>
 	<description>Rock-paper-scissors game with Spring Boot</description>
 

@@ -1,7 +1,7 @@
-package com.janken.api.controllers;
+package com.janken.api.controller;
 
-import com.janken.api.models.Game;
-import com.janken.api.repositories.GameRepository;
+import com.janken.api.model.Game;
+import com.janken.api.repository.GameRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
