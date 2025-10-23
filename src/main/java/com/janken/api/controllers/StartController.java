@@ -1,8 +1,7 @@
 package com.janken.api.controllers;
 
 import com.janken.api.models.Game;
-import com.janken.api.services.GameService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.janken.api.repositories.GameRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +11,17 @@ import java.time.LocalDateTime;
 @Controller
 public class StartController {
 
-    @Autowired
-    private GameService gameService;
+    private final GameRepository gameRepository;
+
+    public StartController(GameRepository gameRepository) {
+        this.gameRepository = gameRepository;
+    }
 
     @GetMapping("/")
     public String start(Model model) throws Exception {
 
         try {
-            Game game = gameService.score();
+            Game game = gameRepository.score();
 
             model.addAttribute("playerWins", game.getWins());
             model.addAttribute("playerDraws", game.getDraws());

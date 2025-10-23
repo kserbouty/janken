@@ -1,7 +1,7 @@
-package com.janken.api.services;
+package com.janken.api.repositories;
 
 import com.janken.api.models.Game;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -10,12 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-@Service
-public class GameService {
+@Repository
+public class GameRepository {
 
     private final DataSource dataSource;
 
-    public GameService(DataSource dataSource) {
+    public GameRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

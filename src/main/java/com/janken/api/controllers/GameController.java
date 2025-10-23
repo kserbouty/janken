@@ -1,9 +1,8 @@
 package com.janken.api.controllers;
 
 import com.janken.api.models.Game;
-import com.janken.api.services.GameService;
+import com.janken.api.repositories.GameRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +14,11 @@ import java.util.Random;
 @Controller
 public class GameController {
 
-    @Autowired
-    private GameService gameService;
+    private final GameRepository gameRepository;
+
+    public GameController(GameRepository gameRepository) {
+        this.gameRepository = gameRepository;
+    }
 
     @GetMapping("/result")
     public String play(@RequestParam(name="choice") String playerChoice, Model model) throws Exception {
@@ -29,7 +31,7 @@ public class GameController {
 
         try {
 
-            Game game = gameService.score();
+            Game game = gameRepository.score();
 
             if (cpuChoice.equalsIgnoreCase("rock")
                     && playerChoice.equalsIgnoreCase("paper")) {
@@ -88,7 +90,7 @@ public class GameController {
                 result = "draw";
             }
 
-            gameService.save(game);
+            gameRepository.save(game);
 
             playerChoice = playerChoice.toUpperCase().charAt(0)
                     + playerChoice.substring(1);
