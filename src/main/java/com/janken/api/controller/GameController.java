@@ -41,7 +41,7 @@ public class GameController {
 
             boolean result;
 
-            result = gameService.checkWin(cpuChoice, playerChoice);
+            result = gameService.checkWin(playerChoice, cpuChoice);
 
             if (result) {
                 int currentWins = game.getWins();
@@ -49,7 +49,7 @@ public class GameController {
                 playerResult = "Win";
             }
 
-            result = gameService.checkLoss(cpuChoice, playerChoice);
+            result = gameService.checkLoss(playerChoice, cpuChoice);
 
             if (result){
                 int currentLosses = game.getLosses();
@@ -57,7 +57,7 @@ public class GameController {
                 playerResult = "Loss";
             }
 
-            result = gameService.checkDraw(cpuChoice, playerChoice);
+            result = gameService.checkDraw(playerChoice, cpuChoice);
 
             if (result){
                 int currentDraws = game.getDraws();
