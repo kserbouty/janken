@@ -3,6 +3,7 @@ package com.janken.api.controller;
 import com.janken.api.model.Game;
 import com.janken.api.repository.GameRepository;
 
+import com.janken.api.service.UtilityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,19 +16,23 @@ import java.util.Random;
 public class GameController {
 
     private final GameRepository gameRepository;
+    private final UtilityService utilityService;
 
-    public GameController(GameRepository gameRepository) {
+    public GameController(GameRepository gameRepository, UtilityService utilityService) {
         this.gameRepository = gameRepository;
+        this.utilityService = utilityService;
     }
 
     @GetMapping("/result")
-    public String play(@RequestParam(name="choice") String playerChoice, Model model) throws Exception {
-
+    public String play(
+            @RequestParam(name="choice") String playerChoice,
+            Model model) throws Exception
+    {
         String[] cpuChoices = {"rock", "paper", "scissors"};
         int cpuTarget = new Random().nextInt(3);
         String cpuChoice = cpuChoices[cpuTarget];
 
-        String result = "";
+        String playerResult = "";
 
         try {
 
@@ -39,7 +44,7 @@ public class GameController {
                 int currentWins = game.getWins();
                 game.setWins(currentWins + 1);
 
-                result = "win";
+                playerResult = "win";
             }
             if (cpuChoice.equalsIgnoreCase("paper")
                     && playerChoice.equalsIgnoreCase("scissors")) {
@@ -47,7 +52,7 @@ public class GameController {
                 int currentWins = game.getWins();
                 game.setWins(currentWins + 1);
 
-                result = "win";
+                playerResult = "win";
             }
             if (cpuChoice.equalsIgnoreCase("scissors")
                     && playerChoice.equalsIgnoreCase("rock")) {
@@ -55,7 +60,7 @@ public class GameController {
                 int currentWins = game.getWins();
                 game.setWins(currentWins + 1);
 
-                result = "win";
+                playerResult = "win";
             }
 
             if (cpuChoice.equalsIgnoreCase("paper")
@@ -64,7 +69,7 @@ public class GameController {
                 int currentLosses = game.getLosses();
                 game.setLosses(currentLosses + 1);
 
-                result = "loss";
+                playerResult = "loss";
             }
             if (cpuChoice.equalsIgnoreCase("scissors")
                     && playerChoice.equalsIgnoreCase("paper")) {
@@ -72,7 +77,7 @@ public class GameController {
                 int currentLosses = game.getLosses();
                 game.setLosses(currentLosses + 1);
 
-                result = "loss";
+                playerResult = "loss";
             }
             if (cpuChoice.equalsIgnoreCase("rock")
                     && playerChoice.equalsIgnoreCase("scissors")) {
@@ -80,24 +85,21 @@ public class GameController {
                 int currentLosses = game.getLosses();
                 game.setLosses(currentLosses + 1);
 
-                result = "loss";
+                playerResult = "loss";
             }
 
             if (cpuChoice.equalsIgnoreCase(playerChoice)) {
                 int currentDraws = game.getDraws();
                 game.setDraws(currentDraws + 1);
 
-                result = "draw";
+                playerResult = "draw";
             }
 
             gameRepository.save(game);
 
-            playerChoice = playerChoice.toUpperCase().charAt(0)
-                    + playerChoice.substring(1);
-            cpuChoice = cpuChoice.toUpperCase().charAt(0)
-                    + cpuChoice.substring(1);
-            String playerResult = result.toUpperCase().charAt(0)
-                    + result.substring(1);
+            playerChoice = utilityService.format(playerChoice);
+            cpuChoice = utilityService.format(cpuChoice);
+            playerResult = utilityService.format(playerResult);
 
             model.addAttribute("playerChoice", playerChoice);
             model.addAttribute("cpuChoice", cpuChoice);
