@@ -17,12 +17,8 @@ public class GameService {
             return true;
         }
 
-        if (cpuChoice.equalsIgnoreCase("scissors")
-                && playerChoice.equalsIgnoreCase("rock")) {
-            return true;
-        }
-
-        return false;
+        return cpuChoice.equalsIgnoreCase("scissors")
+                && playerChoice.equalsIgnoreCase("rock");
     }
 
     public boolean lossConditions(String cpuChoice, String playerChoice) {
@@ -37,20 +33,12 @@ public class GameService {
             return true;
         }
 
-        if (cpuChoice.equalsIgnoreCase("rock")
-                && playerChoice.equalsIgnoreCase("scissors")) {
-            return true;
-        }
-
-        return false;
+        return cpuChoice.equalsIgnoreCase("rock")
+                && playerChoice.equalsIgnoreCase("scissors");
     }
 
     public boolean drawConditions(String cpuChoice, String playerChoice) {
 
-        if (cpuChoice.equalsIgnoreCase(playerChoice)) {
-            return true;
-        }
-
-        return false;
+        return cpuChoice.equalsIgnoreCase(playerChoice);
     }
 }
