@@ -21,7 +21,7 @@ public class StartController {
     public String startGame(Model model) throws Exception {
 
         try {
-            Game game = gameRepository.game();
+            Game game = gameRepository.findScores();
 
             model.addAttribute("playerWins", game.getWins());
             model.addAttribute("playerDraws", game.getDraws());

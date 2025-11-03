@@ -32,7 +32,7 @@ public class GameController {
             Model model) throws Exception
     {
         try {
-            Game game = gameRepository.game();
+            Game game = gameRepository.findScores();
             int cpuTarget = new Random().nextInt(3);
             String[] cpuChoices = {"Rock", "Paper", "Scissors"};
 
