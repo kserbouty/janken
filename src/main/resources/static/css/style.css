@@ -1,6 +1,6 @@
 body {
-    background-color: #1a1d20;
-    color: #00FF66;
+    background-color: #1A1D20;
+    color: #FFFFFF;
     font-family: "Press Start 2P", system-ui;
 }
 
@@ -22,14 +22,14 @@ a:hover {
 }
 
 .item-lnk {
-    background-color: #1a1d20;
+    background-color: #1A1D20;
     border-radius: 10px;
-    border: 2px solid #00FF66;
-    color: #00FF66;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
 }
 
 .item-scr {
-    border: 1px solid #00FF66;
+    border: 1px solid #FFFFFF;
 }
 
 .replay {
