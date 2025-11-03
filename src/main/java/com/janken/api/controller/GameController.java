@@ -4,7 +4,6 @@ import com.janken.api.model.Game;
 import com.janken.api.repository.GameRepository;
 
 import com.janken.api.service.GameService;
-import com.janken.api.service.UtilityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +17,10 @@ public class GameController {
 
     private final GameRepository gameRepository;
     private final GameService gameService;
-    private final UtilityService utilityService;
 
-    public GameController(GameService gameService, GameRepository gameRepository, UtilityService utilityService) {
+    public GameController(GameService gameService, GameRepository gameRepository) {
         this.gameService = gameService;
         this.gameRepository = gameRepository;
-        this.utilityService = utilityService;
     }
 
     @GetMapping("/result")
@@ -67,7 +64,7 @@ public class GameController {
 
             gameRepository.save(game);
 
-            playerChoice = utilityService.format(playerChoice);
+            playerChoice = playerChoice.toUpperCase().charAt(0) + playerChoice.substring(1);
 
             model.addAttribute("playerChoice", playerChoice);
             model.addAttribute("cpuChoice", cpuChoice);
