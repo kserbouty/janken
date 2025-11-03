@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.time.LocalDateTime;
+import java.sql.SQLException;
 
 @Controller
 public class StartController {
@@ -18,20 +18,14 @@ public class StartController {
     }
 
     @GetMapping("/")
-    public String startGame(Model model) throws Exception {
+    public String showStart(Model model) throws SQLException {
 
-        try {
-            Game game = gameRepository.findScores();
+        Game game = gameRepository.findScores();
 
-            model.addAttribute("playerWins", game.getWins());
-            model.addAttribute("playerDraws", game.getDraws());
-            model.addAttribute("playerLosses", game.getLosses());
+        model.addAttribute("playerWins", game.getWins());
+        model.addAttribute("playerDraws", game.getDraws());
+        model.addAttribute("playerLosses", game.getLosses());
 
-            return "start";
-
-        } catch (Exception e) {
-            System.err.println(LocalDateTime.now() + " " + e.getMessage());
-            throw e;
-        }
+        return "start";
     }
 }

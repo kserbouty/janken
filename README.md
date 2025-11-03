@@ -23,21 +23,21 @@
 
 ## Features
 
-- Implementation of the MVC pattern with Spring.
+- MVC pattern with Spring Web.
 - Data persistence through JDBC and PostgreSQL.
-- Fully responsive layout with plain CSS.
-- Support for containers from Docker Compose.
+- Responsive layout with plain CSS.
+- Support for containers from Docker.
 
 ## Project Dependencies
 
 ### Spring Boot
 
-- Spring Boot DevTools
-- Docker Compose Support
 - Spring Web
-- Thymeleaf
 - JDBC API
 - PostgreSQL Driver
+- Thymeleaf
+- Docker Compose Support
+- Spring Boot DevTools
 
 ## Screenshots
 
@@ -46,6 +46,19 @@
     <img src="docs/game-start.png" alt="game-start">
     <img src="docs/game-result.png" alt="game-result">
 </div>
+
+## Installation
+
+### Requirements
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) running in the background.
+- [IntelliJ IDEA Ultimate](https://www.jetbrains.com/idea/download) set with Java 17.
+
+### Launch
+
+1. Open this project with **IntelliJ**.
+2. Run **JankenApplication**.
+3. Visit [localhost:8080](http://localhost:8080/) to start a game.
 
 ## License
 
