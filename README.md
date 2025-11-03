@@ -14,11 +14,11 @@
         <img src="https://img.shields.io/badge/postgresql-18-4169E1?style=flat&logo=postgresql&logoColor=white"
         alt="postgresql-18" /></a>
     <a href="./LICENSE.md">
-        <img src="https://img.shields.io/badge/license-mit-lightgreen?style=flat&logo=github"
+        <img src="https://img.shields.io/badge/license-mit-darkblue?style=flat&logo=github"
         alt="license-mit" /></a>
-    <a href="https://github.com/serbouty/jankenpon">
-        <img src="https://img.shields.io/badge/status-active-lightgreen?style=flat&logo=github"
-        alt="status-active" /></a>
+    <a href="https://github.com/serbouty/janken">
+        <img src="https://img.shields.io/badge/status-complete-darkblue?style=flat&logo=github"
+        alt="status-complete" /></a>
 </p>
 
 ## Features
