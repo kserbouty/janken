@@ -2,7 +2,10 @@ package com.janken.api.model;
 
 public class Game {
 
-    private int id, wins, draws, losses;
+    private final int id;
+    private int wins;
+    private int draws;
+    private int losses;
 
     public Game(int id, int wins, int draws, int losses) {
         this.id = id;
@@ -13,10 +16,6 @@ public class Game {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getWins() {
